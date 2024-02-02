@@ -1,0 +1,129 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Flex Box</title>
+    <style>
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        .flex-container {
+            width: 800px;
+            background: dodgerblue;
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .flex-container>div {
+            background: #f1f1f1;
+            font-size: 30px;
+            margin: 10px;
+            padding: 20px;
+        }
+
+        code {
+            font-size: 18px;
+        }
+
+        .one {
+            align-items: center;
+        }
+
+        .two {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .three {
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .four {
+            flex-flow: row wrap;
+            align-items: baseline;
+        }
+        
+        .five {
+            flex-direction: column;
+            align-items: baseline;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div class="flex-container one">
+        <div>
+            <code>
+               display: flex;<br>
+               align-items: center;
+           </code>
+        </div>
+        <div>Div 2</div>
+        <div>Div 3</div>
+    </div>
+
+
+    <div class="flex-container two">
+        <div>
+            <code>
+               display: flex;<br>
+               flex-direction: column;<br>
+               align-items: center;
+           </code>
+        </div>
+        <div>Div 2</div>
+        <div>Div 3</div>
+    </div>
+
+
+    <div class="flex-container three">
+        <div>
+            <code>
+               display: flex;<br>
+               flex-direction: column;<br>
+               align-items: flex-end;
+           </code>
+        </div>
+        <div>Div 2</div>
+        <div>Div 3</div>
+    </div>
+
+    <div class="flex-container four">
+        <div>
+            <code>
+               display: flex;<br>
+               flex-flow: row wrap;<br>
+               align-items: baseline
+             </code>
+        </div>
+        <div>Div 2</div>
+        <div>Div 3</div>
+    </div>
+    
+    <div class="flex-container five">
+        <div>
+            <code>
+               display: flex;<br>
+               flex-direction: column;<br>
+               align-items: baseline;
+             </code>
+        </div>
+        <div>Div 2</div>
+        <div>Div 3</div>
+    </div>
+
+    <p>
+        A Flexible Layout must have a parent element with the <em>display</em> property set to <em>flex</em>.
+    </p>
+
+    <p>
+        Direct child elements(s) of the flexible container automatically becomes flexible items.
+    </p>
+</body>
+
+</html>

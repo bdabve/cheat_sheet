@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ajax Example</title>
+</head>
+<body>
+  <p>
+    Veuillez choisir quel est le fichier dont vous souhaitez voir le contenu :
+  </p>
+
+  <p>
+    <input type="button" value="ajax.md" />
+    <input type="button" value="file2.txt" />
+    <br /><br />
+    <input type="button" value="unknown.txt" />
+  </p>
+
+  <p id="fileContent">
+    <span>Aucun fichier chargé</span>
+  </p>
+  
+  <script>
+    function loadFile(file) {
+      var xhr = new XMLHttpRequest();
+      
+      // On souhaite juste recuperer le contenu du fichier, la methode GET suffit amplement:
+      xhr.open('GET', file);
+      xhr.addEventListener('readystatechange', function (){ // On gere ici une requete asynchrone
+        if (xhr.readyState == XMLHttpRequest.DONE && (xhr.status === 200 || xhr.status === 0)){ // Si le ficher est charge sans erreur
+            document.getElementById('fileContent').innerHTML = '<span>' + xhr.responseText + '</span>'; // On affiche
+        }else if (xhr.readyState === XMLHttpRequest.DONE && xhr.status != 200) { // En cas d'erreur !
+    
+          alert('Une erreur est survenue !\n\nCode :' + xhr.status + '\nTexte : ' + xhr.statusText);
+        }
+      });
+      
+      xhr.send(null);   // La requete est prete, on envoie tout
+    }
+    
+    (function (){   // une IIFE pour eviter les variables globales
+      var inputs = document.getElementsByTagName('input'),
+          inputsLen = inputs.length;
+      
+      for (var i = 0; i < inputsLen; i++){
+        inputs[i].addEventListener('click', function(){
+          loadFile(this.value);   // A chaque clique, un fichier sera charge dans la page
+        })
+      }
+      
+    })();
+  </script>
+</body>
+</html>

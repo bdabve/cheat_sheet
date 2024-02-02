@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Verifier 2 Email</title>
+</head>
+    <style>
+        .green {
+            color: green;
+        }
+        .red {
+            color: red;
+        }
+    </style>
+<body>
+    <p class="center">
+        <label>E-Mail : </label> 
+        <input type="text" id="email-1" placeholder="Entrez votre e-mail">
+    </p>
+    
+    <p class="center">
+        <label>Confirmez : </label> 
+        <input type="text" id="email-2" placeholder="Confirmez votre e-mail">    
+    </p>
+
+    <script>
+        var email_1 = document.getElementById('email-1'),
+        email_2 = document.getElementById('email-2');
+
+        if (email_1 && email_2) {
+            email_1.onkeyup = email_2.onkeyup = email_1.onblur = email_2.onblur = function() {
+                var value_1 = email_1.value;
+                var value_2 = email_2.value;
+
+                if (value_1 && value_2) { // Si les deux champs contiennent quelque chose
+                    if (value_1 === value_2) {
+                        email_1.className = "green";
+                        email_2.className = "green";
+                    } else {
+                        email_1.className = "red";
+                        email_2.className = "red";
+                    }
+                }
+            };		
+        }
+        
+        
+        /* 
+         * une autre methode
+        var email_1 = document.getElementById('email-1'),
+            email_2 = document.getElementById('email-2');
+
+        if (email_1 && email_2) {
+            email_1.onkeyup = email_2.onkeyup = email_1.onblur = email_2.onblur = function() {
+                var value_1 = email_1.value, 
+                    value_2 = email_2.value;
+
+                if (value_1 && value_2) { // Si les deux champs contiennent quelque chose
+                    email_1.className = email_2.className = (value_1 === value_2) ? "green" : "red";
+                }
+            };		
+        }
+        */
+        
+        /*
+         * Avec une fonction nome
+         function compareEmails() {
+            var email_1 = document.getElementById('email-1'),
+                email_2 = document.getElementById('email-2');
+            var value_1 = email_1.value, 
+                value_2 = email_2.value;
+
+                if (value_1 && value_2) { // Si les deux champs contiennent quelque chose
+                    email_1.className = email_2.className = (value_1 === value_2) ? "green" : "red";
+                }	
+            }
+
+            var email_1 = document.getElementById('email-1'),
+            email_2 = document.getElementById('email-2');
+
+            if (email_1 && email_2) {
+                email_1.onkeyup = email_2.onkeyup = email_1.onblur = email_2.onblur = compareEmails;
+            }
+        */
+    </script>
+</body>
+</html>

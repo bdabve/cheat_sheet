@@ -1,0 +1,15 @@
+$ apt list pkgnames             # List available packages
+$ apt search youtube-dl         # Display of matched packages
+$ apt show youtube-dl           # Show pakckage details
+$ apt-cache showpkg youtube-dl  # Packege dependencies
+$ apt-cache stats               # Statistics
+
+$ sudo apt install youtube-dl --only-upgrade    # Upgrade only specific packages
+$ sudo apt install vsftpd=2.3.5-3ubuntu1        # Install with version
+$ sudo apt-get check                            # Check broken dependencies
+
+$ dpkg-query -L youtube-dl                      # All files the package installed onto your system
+dpkg -i test.deb                # Install the package or upgrade it
+dpkg -P test.deb                # Remove a package including configuration files
+dpkg -I                         # List all installed packages with versions and details
+dpkg -s test.deb | grep Status  # Find out if a Debian package is installed or not

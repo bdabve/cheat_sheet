@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>Menu Vertical Accordeon</title>
+    <link rel=stylesheet href="../../tools/fontawesome-free-5.1.0-web/css/all.css">
+    <link rel="stylesheet" href="./css/accordion_menu.css">
+</head>
+
+<body>
+    <div class="container-menu">
+
+        <ul class="menu">
+            <li><a href="#"><i class="fa icone right fa-user">&nbsp;</i>Profile</a></li>
+            <li><a href="#">Etats Du Stock</a></li>
+            <li><a href="#"><i class="fa icone right fa-square"></i>Ajouter &nbsp;<i class="fa icone left fa-chevron-down"></i></a>
+                <ul>
+                    <li><a href="#">Ajouter Categorie</a></li>
+                    <li><a href="#">Ajouter Produits</a></li>
+                </ul>
+            </li>
+            <li><a href="#"><i class="fa icone right fa-bars"></i>Gestion &nbsp;<i class="fa icone left fa-chevron-down"></i></a>
+                <ul>
+                    <li><a href="#">Gestion Categorie</a></li>
+                    <li><a href="#">Gestion Produits</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+
+    <script src="../../tools/jquery-3.3.1.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.menu li:has(ul)').click(function(e){
+                e.preventDefault();
+                
+                if ($(this).hasClass('active')) {
+                    $(this).removeClass('active');
+                    $(this).children('ul').slideUp();
+                } else {
+                    $('.menu li ul').slideUp();
+                    $('.menu li').removeClass('active');
+                    $(this).addClass('active');
+                    $(this).children('ul').slideDown();
+                }
+            })
+        })
+    </script>
+</body>
+</html>

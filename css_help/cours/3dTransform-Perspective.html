@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>3D Transform - Perspective </title>
+    <style>
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        div:first-of-type {
+            perspective: 500px;
+            perspective-origin: 50% 50%; /* Default Value*/
+        }
+
+        div:nth-of-type(2) {
+            perspective: 300px;
+            perspective-origin: left;
+        }
+
+        div:last-of-type {
+            perspective: 200px;
+            perspective-origin: 45% 30%;    }
+
+        img {
+            display: block;
+            margin: 50px auto;
+            transition: all .5s ease-in-out;
+            transform: translateZ(100px);
+
+        }
+
+        img:hover {
+            transform: translateZ(100px);
+        }
+
+    </style>
+</head>
+
+<body>
+    <div>
+        <img class="one" src="./%D8%B1%D8%AD%D9%85%20%D8%A7%D9%84%D9%84%D9%87%20%D8%A7%D9%84%D9%85%D9%86%D8%B5%D9%88%D8%B1.jpg" alt="mansor" width="200px" height="200px">
+    </div>
+
+    <div>
+        <img class="one" src="./%D8%B1%D8%AD%D9%85%20%D8%A7%D9%84%D9%84%D9%87%20%D8%A7%D9%84%D9%85%D9%86%D8%B5%D9%88%D8%B1.jpg" alt="mansor" width="200px" height="200px">
+    </div>
+
+    <div>
+        <img class="one" src="./%D8%B1%D8%AD%D9%85%20%D8%A7%D9%84%D9%84%D9%87%20%D8%A7%D9%84%D9%85%D9%86%D8%B5%D9%88%D8%B1.jpg" alt="mansor" width="200px" height="200px">
+    </div>
+</body>
+
+</html>

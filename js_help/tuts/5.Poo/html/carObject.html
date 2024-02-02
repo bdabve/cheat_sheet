@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>Cars</title>
+</head>
+
+
+<body>
+    <script src="../../../../tools/jquery-3.3.1.min.js"></script>
+    <script>
+        var Car = function(x, y, name) {
+            this.x = x;
+            this.y = y;
+            this.name = name;
+        };
+
+        var drawCar = function(car) {
+            // Create a string containing HTML that points to an image of a car
+            var carHtml = '<div>' + car.name +'</div>'; // 
+            
+            // Pass carHTML to the $ function, which converts it from a string to a jQuery element.
+            var carElement = $(carHtml);
+            
+            // Use the css method on carElement to set the position of the car image. 
+            carElement.css({
+                position: "absolute",
+                left: car.x,
+                top: car.y,
+                border: '1px solid black',
+                width: '100px',
+                height: '40px',
+                backgroundColor: '#EEE'
+            });
+            
+            // Append our element to body
+            $("body").append(carElement);
+        }
+        
+        // Testing the drawing Car
+        var tesla = new Car(10, 20, 'Tesla');
+        var nissan = new Car(100, 200, 'Nissan');
+        
+        drawCar(tesla);
+        drawCar(nissan);
+        
+    </script>
+</body>
+</html>

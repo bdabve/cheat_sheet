@@ -1,0 +1,16 @@
+sudo lshw                   # Display all hardware details
+lsmod                       # List currently loaded kernel modules
+
+find /lib/modules/$(uname -r) -type f -iname "*.ko"     # List all modules available to the system
+
+modprobe modulename         # Load a module into kernel
+modprobe -r modulename      # Remove a module from kernel 
+
+lspci                       # List devices connected via pci bus
+lspci -vvxxx                # Debug output for pci devices (hex)
+
+cat /proc/cpuinfo           # Display cpu hardware stats
+cat /proc/meminfo           # Display memory hardware stats
+
+dmesg                       # Output the kernel ring buffer
+dmesg --kernel              # Ouput kernel messages

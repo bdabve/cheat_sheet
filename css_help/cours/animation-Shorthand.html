@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Animation Shorhand</title>
+    <style>
+        .container {
+            width: 900px;
+            height: 50px;
+            background: #fff;
+            border: 1px solid #ccc;
+            margin: 50px auto;
+
+
+        }
+
+        .animate {
+            width: 20px;
+            height: 100%;
+            background-color: red;
+            position: relative;
+            left: 0px;
+            top: 0px;
+            animation: moving 8s ease 2s 3 alternate both running; 
+        }
+
+        @keyframes moving {
+            0% {
+                width: 20px;
+            }
+            100% {
+                width: 100%;
+                background-color: green;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="animate"></div>
+    </div>
+</body>
+
+</html>

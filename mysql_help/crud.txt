@@ -1,0 +1,147 @@
+|-------------------------------------------------------------------------------------------------------------------
+| INSERT
+|-------
+| -- Les Valeur des colonnes sont donnees dans l'ordre donnees de la creation de la table.
+| mysql> INSERT INTO Animal VALUES (1, 'chien', 'M', '2010-04-05 13:43:00', 'Rox', 'Mordille beaucoup');
+| mysql> INSERT INTO Animal VALUES (NULL , 'chat', 'F', '2010-09-13 15:02:00', 'Schtroumpfette', NULL);  -- If id = auto_increment
+|
+| # Insertion en précisant les colonnes:
+|   mysql> INSERT INTO Animal(espece, sexe, date_naissance) VALUES('tortue', 'F', '2009-08-03 05:12:00');
+|
+| -- Insertion Multiple.
+|   mysql> INSERT INTO Animal (espece, sexe, date_naissance, nom)
+|     ...> VALUES ('chien', 'F', '2008-12-06 05:18:00', 'Caroline'),
+|     ...>        ('chat', 'M', '2008-09-11 15:38:00', 'Bagherra'),
+|     ...>        ('tortue', NULL, '2010-08-23 05:18:00', NULL);
+|
+| -- Syntax alternative de MySql
+|   mysql> INSERT INTO Animal SET nom='Bobo', espece='chien', sexe='M', date_naissance='2010-07-21 15:41:00';
+|
+| # Suppression
+|--------------
+| mysql> DELETE FROM Animal WHERE nom = 'Zoulou';         -- Zoulou est mort
+| mysql> DELETE FROM Animal;                              -- Supprimer toutes les lignes d'une table
+| mysql> DELETE FROM insect WHERE id IN (2, 8, 7);        -- Multiple
+|
+| # Modification
+|--------------
+|
+| UPDATE Animal SET sexe='F', nom='Pataude' WHERE id=21;                  -- update id 21.
+| UPDATE Animal SET commentaires='modification de toutes les lignes';     -- update all rows.
+|------------------------------------------------------------------------------------------------------------
+| Reject Bad Input Values
+|------------------------
+|
+| * Inserting a row with unsuitable data values into the table causes warnings,
+|   but the server loads the values into the table after coercing them to some value that fits the column
+| * Let the server check data values on the server side and reject them with an error if they’re invalid.
+| * To do this, set the sql_mode system variable to enable server restrictions on input data acceptance.
+|   With the proper restrictions in place, data values that would otherwise result in conversions and warnings result
+|   in errors instead.
+|
+|   mysql> CREATE TABLE t (i INT, c CHAR(6), d DATE);
+|   mysql> SET sql_mode = 'STRICT_ALL_TABLES';
+|   mysql> INSERT INTO t (i,c,d) VALUES('-1x','too-long string!','1999-02-31');
+|   -- ERROR 1265 (01000): Data truncated for column 'i' at row 1
+|
+|   mysql> SET sql_mode = 'STRICT_ALL_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE';
+|   mysql> SET sql_mode = 'TRADITIONAL';
+|   mysql> SELECT @@sql_mode\G
+|
+|   *************************** 1. row ***************************
+|   @@sql_mode:STRICT_TRANS_TABLES,STRICT_ALL_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,TRADITIONAL,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION
+|
+| * A simpler way to enable these restrictions, and a few more besides, is to enable TRADITIONAL SQL mode.
+|------------------------------------------------------------------------------------------------------------
+| Handling Duplicate
+|-------------------
+|
+| ### Dealing with Duplicates When Loading Rows into a Table
+|
+| * One approach is to just ignore the error.
+| * Another is to use an INSERT IGNORE, REPLACE, or INSERT … ON DUPLICATE KEY UPDATE statement, each of which modifies
+|   MySQL’s duplicate-handling behavior.
+| * For bulk-loading operations, LOAD DATA has modifiers that enable you to specify how to handle duplicates.
+|
+|   -- To keep the original row when a duplicate occurs
+|      mysql> INSERT IGNORE INTO person(last_name, first_name) VALUES('X2','Y2');
+|
+|   -- To replace the original row with the new one when a duplicate occurs
+|      mysql> REPLACE INTO person(last_name, first_name) VALUES('X3','Y3');   -- If new insert it OR Replace it
+|
+| * To modify columns of an existing row when a duplicate occurs, use INSERT … ON DUPLICATE KEY UPDATE.
+|   * If the row is new, it’s inserted.
+|   * If it’s a duplicate, the ON DUPLICATE KEY UPDATE clause indicates how to modify the existing row in the table.
+|
+|   mysql> INSERT INTO poll_vote (poll_id,candidate_id,vote_count) VALUES(14,3,1)
+|       -> ON DUPLICATE KEY UPDATE vote_count = vote_count + 1;
+|
+| # Counting and Identifying Duplicates
+|--------------------------------------
+|
+| mysql> SELECT COUNT(*) - COUNT(DISTINCT last_name, first_name) AS 'duplicate names' FROM catalog_list;
+|
+| -- To see the duplicated names
+|    mysql> SELECT COUNT(*), last_name, first_name FROM catalog_list
+|        -> GROUP BY last_name, first_name HAVING COUNT(*) > 1;
+|
+| -- To see the original rows containing the duplicate names
+|    mysql> CREATE TABLE tmp
+|        -> SELECT COUNT(*) AS count, last_name, first_name FROM catalog_list
+|        -> GROUP BY last_name, first_name HAVING count > 1;
+|    mysql> SELECT catalog_list.*
+|        -> FROM tmp INNER JOIN catalog_list USING (last_name, first_name)
+|        -> ORDER BY last_name, first_name;
+|
+| Eliminating Duplicates from a Table
+|------------------------------------
+|
+| * Removing duplicates using table replacement
+|
+|   mysql> CREATE TABLE tmp LIKE catalog_list;                    -- Creating tmp table
+|   mysql> INSERT INTO tmp SELECT DISTINCT * FROM catalog_list;   -- Inserting DISTINCT
+|   mysql> DROP TABLE catalog_list;                               -- Droping main table
+|   mysql> RENAME TABLE tmp TO catalog_list;                      -- Renaming tmp.
+|
+| *  Create a new table that has a unique index for those columns, select rows into it using INSERT IGNORE,
+|    and replace the original table with the new one
+|
+|   mysql> CREATE TABLE tmp LIKE catalog_list;
+|   mysql> ALTER TABLE tmp ADD PRIMARY KEY (last_name, first_name);
+|   mysql> INSERT IGNORE INTO tmp SELECT * FROM catalog_list;
+|   mysql> DROP TABLE catalog_list;
+|   mysql> RENAME TABLE tmp TO catalog_list;
+|
+| Removing duplicates of a particular row
+|----------------------------------------
+| mysql> SELECT COUNT(*), last_name, first_name FROM catalog_list
+|     -> GROUP BY last_name, first_name HAVING COUNT(*) > 1;
+|        +----------+-----------+------------+
+|        | COUNT(*) | last_name | first_name |
+|        +----------+-----------+------------+
+|        | 3        | Baxter    | Wallace    |
+|        | 2        | Pinter    | Marlene    |
+|        +----------+-----------+------------+
+|
+| mysql> DELETE FROM catalog_list WHERE last_name = 'Baxter' AND first_name = 'Wallace' LIMIT 2;
+| mysql> DELETE FROM catalog_list WHERE last_name = 'Pinter' AND first_name = 'Marlene' LIMIT 1;
+|------------------------------------------------------------------------------------------------
+| MySQL From the command line
+|----------------------------
+|
+| $ echo "SELECT * FROM table_name" | mysql -h localhost -u dabve -t -p DB_name
+|
+| $ mysql -H -e "SELECT * FROM table_name" DB_name -p > output.html
+|
+| $ mysql -X -e "SELECT * FROM table_name" DB_name -p > output.xml
+|
+| $ mysql --skip-column-name -e "SELECT * FROM table_name" -p DB_name
+| $ mysql -ss -e "SELECT * FROM table_name" -p DB_name
+|
+| -t , --table      | Produce table.
+| -H , --html       | Producing HTML output
+| -X , --xml        | Producing XML output
+| -e , --execute    | Execute command and quit.
+| --skip-column-name  | Suppressing Column Heading in query output
+| -s , --silent     | Achieve the same as --skip-column-name
+|___________________________________________________________________________________________

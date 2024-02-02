@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SetTimeOut and ClearTimeOut Example</title>
+</head>
+<body>
+  <button id='click'>Clear Time Out</button>
+
+  <script>
+    
+    function writeMsg(){
+      'use strict';
+      window.console.log('Hello There!');
+    }
+    var myTime = setTimeout(writeMsg, 3000);
+    
+    var button = document.getElementById('click');
+    button.onclick = function(){
+      'use strict';
+      clearTimeout(myTime);
+    }
+    
+  </script>
+</body>
+</html>

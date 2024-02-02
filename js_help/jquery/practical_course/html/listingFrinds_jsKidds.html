@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Listing Friends With jQuery</title>
+</head>
+<body>
+ 
+ <div id='Friends'>
+   <h1 id="title">Hello World!</h1>
+ </div>
+  
+  <script src="../../../../tools/jquery-3.3.1.js"></script>
+  <script>
+  
+    var friends = [
+      'Meziane',
+      'Mahfoud',
+      'Znanda',
+      'Firoud'
+    ]
+    
+    $('#title').html('List of my friends');
+    
+    for (var i = 0; i < friends.length; ++i){
+      $('#Friends').append('<p>' + friends[i] + '</p>');
+    }
+    
+    $('#Friends p').hide().fadeIn(2000)
+    
+    $('p').append(' smells!');
+    
+    for (var i = 0; i < 5; ++i){
+      $('#title').fadeOut(i + 999).fadeIn(i + 999);
+    }
+    
+    // $('#title').fadeTo(2000, 0.5);
+
+    
+  </script>
+</body>
+</html>

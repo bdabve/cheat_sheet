@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Float</title>
+    <style>
+        .left {
+            width: 300px;
+            background: #00f;
+            color: #fff;
+            padding: 10px;
+            margin: 10px;
+            float: left;
+        }
+        
+        .special {
+            float: right;
+        }
+        
+        .container {
+            width: 600px;
+            background: #ddd;
+            padding: 10px;
+            border: 1px solid #ccc;
+            margin: 20px;
+            
+        }
+        
+        .container span {
+            float: right;
+        }
+        
+        .clear_float {
+            clear: both;
+        }
+        
+        .overflow {
+            background: #ddd;
+            overflow: hidden;
+        }
+        p{
+            float: left;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Graphic Software</h2>
+    <div class="left">Adobe Photoshop</div>
+    <div class="left">CorelDRAW</div>
+    <div class="left special">AutoCAD</div>   
+    
+    <div class="clear_float"></div>    
+    <h2>Coding Software</h2>
+    <div class="left">Brackets</div>
+    <div class="left">Vim</div>
+    <div class="left special">Gedit</div>
+
+    <div class="clear_float"></div>
+    <div class="container">How to use float <span>views 1000</span></div>
+    
+    <div class="clear_float"></div>
+    <div class="overflow">
+        <p>This is P1</p>
+        <p>This is P2</p>
+    </div>
+</body>
+</html>

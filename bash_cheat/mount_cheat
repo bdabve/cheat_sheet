@@ -1,0 +1,26 @@
+[+] The mount command:
+
+$ mount             # viewing A List Of Mounted File Systems.
+
+[+] mount: provides four pieces of information:
+    * The device filename of the media
+    * The mount point in the virtual directory where the media is mounted
+    * The filesystem type
+    * The access status of the mounted media
+
+$ mount -o remount,rw /                 # To mount / partition as read-write in repair mode:
+$ mount | column -t                     # See output in column format
+
+$ mkdir /mnt/cdrom                      # Creating a new mount point
+$ mount -t iso9660 /dev/hdc /mnt/cdrom  # Mount the cd-rom at the new Mount point
+
+$ mount --bind /origin/path /destination/path                       # Bind mount path to a second location
+$ mount -o uid=username,gid=usergroup /dev/sdx /mnt/xxx             # To mount Usb disk as user writable:
+$ mount -t nfs example.com:/remote/example/dir /local/example/dir   # To mount a remote NFS directory
+
+# Mounting An ISO Image Directly:
+# -o loop : treat the ISO image as though it were already on optical media.
+    $ mount -o loop disk1.iso /mnt/disk   # To mount an ISO
+
+    $ mkdir /mnt/iso_image
+    $ mount -t iso9660 -o loop image.iso /mnt/iso_image

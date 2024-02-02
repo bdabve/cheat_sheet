@@ -1,0 +1,29 @@
+table {
+    width: 600px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+table td {
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+.table {
+    display: table;
+    width: 600px;
+    border: 1px solid #CCC;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.table .table-row {
+    display: table-row;
+}
+
+.table .table-row .table-data {
+    display: table-cell;
+    padding: 10px;
+    border: 1px solid #CCC;
+    vertical-align: middle;
+}

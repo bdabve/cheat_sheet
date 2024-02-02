@@ -1,0 +1,32 @@
+$ jobs -l       # list of jobs with PID.
+$ jobs -r       # list only running jobs
+$ jobs -s       # list only suspended jobs
+$ %X            # controle job X.
+
+$ job %2 &  # Send job number 2 to bg.
+$ stop %2   # Suspend a job.
+
+$ fg %2         # send job 2 to fg.
+$ fg %+         # brings most recently invoked background job
+$ fg %-         # brings second most recently invoked background job
+$ fg %N         # brings job number N
+$ fg %string    # brings job whose command begins with string
+$ fg %?string   # brings job whose command contains string
+$ bg %2         # Send job 2 to fg.
+
+$ kill %1   # kill job 1.
+$ kill %%   # kill current job
+$ wait      # wait job to terminate.
+
+$ cp video.avi copie_video.avi &
+$ find / -name '*log' > sortiefind &    # Send result to STDOUT
+$ find / -name '*log' > sortiefind 2>&1 &   # Send result and error to STDOUT
+
+[+] nohup: makes the started process immune to the SIGHUP signal. it will continue running when the terminal closes.
+    $ nohup cp video.avi copie_video.avi$colorOff
+    $ pgrep -a cp$colorOff    # To find the cp command and kill it
+
+[+] disown: remove a job from the jobs queue of a terminal, it can no longer managed with (bg, fg, CTRL-Z),
+            it will immediately be removed from the list in the jobs output
+    $ disown %2
+    $ disown -h %2  # To use normal job control mechanisms

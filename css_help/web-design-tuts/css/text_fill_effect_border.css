@@ -1,0 +1,34 @@
+body {
+    background-color: #333;
+    font-family: Tahoma, Arial;
+}
+
+a {
+    color: rgba(255, 255, 255, .5);
+    display: inline-block;
+    margin: 20px;
+    position: relative;
+    text-decoration: none;
+    padding: 10px 0;
+}
+
+a::before {
+    content: attr(data-text);
+    color: #fff;
+    position: absolute;
+    left: 0;
+    top: 0px;
+    padding: 10px 0;
+    width: 0%;
+    display: inline-block;
+    overflow: hidden;
+    border-bottom: 1px solid orange;
+    opacity: 1;
+    transition: .5s;
+    white-space: nowrap;
+}
+
+a:hover::before{
+    width: 100%;
+}
+

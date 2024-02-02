@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>setInterval and ClearInterval Example</title>
+</head>
+<body>  
+  <div>This Bomb Will Explose in: <span id="show">10</span></div>
+  <script>
+    var button = document.getElementById('click'),
+        myDiv = document.getElementById('show');
+
+    function countDown(){
+      'use strict';
+      
+      if (myDiv.textContent <= 1){
+        myDiv.textContent = "Boum Boum!";
+        clearInterval(myTime);                // Stop Counting
+      
+      } else {
+        myDiv.textContent = myDiv.textContent - 1;
+      }
+      
+    }
+    
+    var myTime = setInterval(countDown, 1000);
+    
+  </script>
+</body>
+</html>

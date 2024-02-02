@@ -1,0 +1,119 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Flex Box</title>
+    <style>
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        .flex-container {
+            width: 800px;
+            background: dodgerblue;
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .flex-container>div {
+            background: #f1f1f1;
+            font-size: 30px;
+            margin: 10px;
+            padding: 20px;
+        }
+
+        code {
+            font-size: 18px;
+        }
+
+        .one {
+            flex-direction: row;
+        }
+
+        .two {
+            flex-direction: column;
+        }
+
+        .three {
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
+        .four {
+            flex-flow: row wrap;
+        }
+        
+
+    </style>
+</head>
+
+<body>
+    <div class="flex-container one">
+        <div>
+            <code>
+               display: flex;<br>
+               flex-direction: row;
+           </code>
+        </div>
+        <div>Div 2</div>
+        <div>Div 3</div>
+    </div>
+
+
+    <div class="flex-container two">
+        <div>
+            <code>
+               display: flex;<br>
+               flex-direction: column;
+           </code>
+        </div>
+        <div>Div 2</div>
+        <div>Div 3</div>
+    </div>
+
+
+    <div class="flex-container three">
+        <div>
+            <code>
+               display: flex;<br>
+               flex-direction: row;<br>
+               flex-wrap: wrap;
+           </code>
+        </div>
+        <div>Div 2</div>
+        <div>Div 3</div>
+        <div>Div 4</div>
+        <div>Div 5</div>
+        <div>Div 6</div>
+        <div>Div 7</div>
+        <div>Div 8</div>
+    </div>
+
+    <div class="flex-container four">
+        <div>
+            <code>
+               display: flex;<br>
+               flex-flow: row wrap;
+             </code>
+        </div>
+        <div>Div 2</div>
+        <div>Div 3</div>
+        <div>Div 4</div>
+        <div>Div 5</div>
+        <div>Div 6</div>
+        <div>Div 7</div>
+        <div>Div 8</div>
+    </div>
+
+    <p>
+        A Flexible Layout must have a parent element with the <em>display</em> property set to <em>flex</em>.
+    </p>
+
+    <p>
+        Direct child elements(s) of the flexible container automatically becomes flexible items.
+    </p>
+</body>
+
+</html>

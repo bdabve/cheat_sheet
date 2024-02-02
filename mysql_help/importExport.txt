@@ -1,0 +1,161 @@
+|------------------------------------------------
+| Importing and Exporting Data
+|-----------------------------
+| -- MySQL provides a LOAD DATA statement that acts as a bulk data loader.
+|    mysql> LOAD DATA LOCAL INFILE 'mytbl.txt' INTO TABLE mytbl;
+|
+| -- mysqlimport: Acts as a wrapper around LOAD DATA so that you can load input files directly from the cmdline.
+| -- You may need to specify connection parameter options such as --user or --host ...
+|   $ mysqlimport --local cookbook mytbl.txt
+|
+| -- To specify a Windows pathname, use either doubled backslashes or forward slashes.
+|    mysql> LOAD DATA LOCAL INFILE 'C:\\projects\\mydata.txt' INTO mytbl;
+|    mysql> LOAD DATA LOCAL INFILE 'C:/projects/mydata.txt' INTO mytbl;
+|
+| -- If the NO_BACKSLASH_ESCAPES SQL mode is enabled
+|    mysql> SET sql_mode = 'NO_BACKSLASH_ESCAPES';
+|    mysql> LOAD DATA LOCAL INFILE 'C:\projects\mydata.txt' INTO mytbl;
+|
+| -- Specifying column and line delimiters with LOAD DATA
+|    mysql> LOAD DATA LOCAL INFILE 'mytbl.txt' INTO TABLE mytbl FIELDS TERMINATED BY ':' LINES TERMINATED BY '\r';
+|    mysql> LOAD DATA LOCAL INFILE 'mytbl.txt' INTO TABLE mytbl LINES TERMINATED BY '\r\n';
+|    -- You can specify:  FIELDS ENCLOSED BY '"' TERMINATED BY ','
+|
+|   -- Ignoring lines
+|   mysql> LOAD DATA LOCAL INFILE 'mytbl.txt' INTO TABLE mytbl IGNORE 1 LINES;
+|
+|   -- Specifying input column order
+|   mysql> LOAD DATA LOCAL INFILE 'mytbl.txt' INTO TABLE mytbl (b,c,a);
+|
+|   -- Handling duplicate key values with IGNORE or REPLACE
+|   mysql> LOAD DATA LOCAL INFILE 'data.txt' REPLACE INTO TABLE wheatherdata;
+|
+| -- Specifying column and line delimiters with mysqlimport
+|    $ mysqlimport --local --fields-terminated-by=":" --lines-terminated-by="\r" cookbook mytbl.txt
+|    $ mysqlimport --local --fields-terminated-by=":" --lines-terminated-by="\r\n" cookbook mytbl.txt
+|    # You can specify: --fields-enclosed-by and --fields-escaped-by
+|
+| -- Ignoring lines
+|    $ mysqlimport --local --fields-terminated-by=":" --lines-terminated-by="\r\n" --ignore-lines=1 cookbook mytbl.txt
+|
+|    # Specifying input column order
+|    $ mysqlimport --local --columns=b,c,a cookbook mytbl.txt
+|
+|    # Handling duplicate key values with IGNORE or REPLACE
+|    $ mysqlimport --local --replace cookbook mytbl.txt
+|
+| # Preprocessing input values before inserting them
+|
+| * LOAD DATA can perform limited preprocessing of input values before inserting them, which sometimes enables you
+|   to map input data onto more appropriate values before loading them into your table.
+|
+|   mysql> CREATE TABLE t(
+|       ->     dt DATETIME,
+|       ->     last_name CHAR(10),
+|       ->     first_name CHAR(10),
+|       ->     weight_kg FLOAT,
+|       ->     st_abbrev CHAR(2)
+|       -> );
+|
+|   mysql> LOAD DATA LOCAL INFILE 'data.txt' INTO TABLE t IGNORE 1 LINES
+|       -> (@date,@time,@name,@weight_lb,@state)
+|       -> SET dt = CONCAT(@date,' ',@time),
+|       -> first_name = SUBSTRING_INDEX(@name,' ',1),
+|       -> last_name = SUBSTRING_INDEX(@name,' ',-1),
+|       -> weight_kg = @weight_lb * .454,
+|       -> st_abbrev = (SELECT abbrev FROM states WHERE name = @state);
+|
+| -- Ignoring datafile columns
+| -- The list should include the name of each column to load into the table, and a dummy user-defined variable
+|    for columns to be ignored
+|    mysql> CREATE TABLE passwd(
+|        ->     account CHAR(8), # login name
+|        ->     uid INT, # user ID
+|        ->     gid INT, # group ID
+|        ->     gecos CHAR(60), # name, phone, office, etc.
+|        ->     shell CHAR(60) # command interpreter
+|        -> );
+|
+|   -- Procede
+|   mysql> LOAD DATA LOCAL INFILE '/etc/passwd' INTO TABLE passwd
+|       -> FIELDS TERMINATED BY ':'
+|       -> (account,@dummy,uid,gid,gecos,@dummy,shell);
+|
+| * mysqlimport:
+|   $ mysqlimport --local --columns="account,@dummy,uid,gid,gecos,@dummy,shell" --fields-terminated-by=":" cookbook /etc/passwd
+|
+| # Importing CSV Files
+|   mysql> LOAD DATA LOCAL INFILE 'mytbl.txt' INTO TABLE mytbl
+|       -> FIELDS TERMINATED BY ',' ENCLOSED BY '"'
+|       -> LINES TERMINATED BY '\r\n';
+|
+| * mysqlimport
+|   $ mysqlimport --local --lines-terminated-by="\r\n" --fields-terminated-by="," --fields-enclosed-by="\"" cookbook mytbl.txt
+|
+| ## Exporting Query Results from MySQL
+|
+| - The SELECT … INTO OUTFILE statement exports a query result directly into a file on the server host.
+|   mysql> SELECT * FROM passwd INTO OUTFILE '/tmp/passwd.txt';
+|
+|   -- Change the output format
+|   mysql> SELECT * FROM passwd INTO OUTFILE '/tmp/passwd.txt'
+|       -> FIELDS TERMINATED BY ',' ENCLOSED BY '"'
+|       -> LINES TERMINATED BY '\r\n';
+|
+| - You must have the MySQL FILE privilege to execute the SELECT … INTO OUTFILE statement
+|   mysql> GRANT FILE ON *.* TO 'dabve'@'localhost';
+|
+| - With **_mysql_** client
+|   $ mysql -e "SELECT account, shell FROM passwd" --skip-column-names cookbook > shells.txt
+|
+| # Importing and Exporting NULL Values
+|
+| mysql> LOAD DATA LOCAL INFILE 'has_nulls.txt' INTO TABLE t (@c1, @c2, @c3)
+|     -> SET c1 = IF(@c1='Unknown', NULL, @c1),
+|     ->     c2 = IF(@c2=-1,NULL, @c2),
+|     ->     c3 = IF(@c3='',NULL, @c3);
+|------------------------------------------------------------------------------
+| # Backp:
+|---------
+| --opt : Qui lance la commande avec une série de paramètres qui font que la commande s'effectue très rapidement.
+| --routines and --events: includes definitions for stored functions and procedures and scheduled events.
+| --triggers: mysqldump dumps triggers with their associated tables by default.
+|
+| To omit trigger definitions, use --skip-triggers
+| $ mysqldump -u user -p --opt nom_de_la_base > sauvegarde.sql      # Backup a partire du terminal
+| $ mysql nom_base < chemin_fichier_de_sauvegarde.sql               # from terminal
+|
+| $ mysqldump --routines --events db1 > dump.sql      #  back up a single database
+| $ mysql db1 < dump.sql
+|
+| $ mysqldump --routines --events --databases db1 db2 db3 > dump.sql  # Backup multiple database
+| $ mysql < dump.sql                    # In this case, no database name is needed on the command line
+|
+| $ mysqldump --routines --events --all-databases > dump.sql
+| $ mysql < dump.sql
+|
+| $ mysqldump cookbook mail > mail.sql              # Copy a single table to a different database
+| $ mysql other_db < mail.sql
+|
+| $ mysqldump cookbook mail | mysql -h other-host.example.com other_db    # Copying tables between MySQL servers
+| $ mysqldump cookbook mail | ssh other-host.example.com mysql other_db
+|
+| mysql> USE nom_base;
+| mysql> SOURCE fichier_de_sauvegarde.sql;                               -- A partire de mysql
+|
+| # Importing 'PGSQL'
+|--------------------
+| - The with let specify options.
+| - Here we specify that the external file should be a csv file, and exclude the file's header row.
+| - For more informations see https://www.postgresql.org/docs/current/static/sql-copy.html
+|   psql> COPY table_name FROM '/path/to/file' WITH (FORMAT CSV, HEADER);
+|   psql> COPY table_name(column1, column2, ...) FROM '/path/to/file' WITH(FORMAT CSV, HEADER);
+|
+| ## Exporting 'PGSQL'
+|
+| - Rather than using FROM, we use TO for the path:
+|   psql> COPY table_name TO '/file/path' WITH(FORMAT CSV, HEADER, DELIMITER ';');
+|   psql> COPY table_name(column, column1, ...) TO '/file/path' WITH(FORMAT CSV, HEADER, DELIMITER ';');
+|
+|   psql> COPY(SELECT column, column2 FROM table_name WHERE column ILIKE '%value%')
+|   ....  TO '/file/path.txt' WITH(FORMAT CSV, HEADER, DELIMITER ';')

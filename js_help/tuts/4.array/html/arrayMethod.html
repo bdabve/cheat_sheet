@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Partie I - Chapitre 7 - Exemple 8</title>
+  </head>
+  
+  <body>
+<pre>
+  var nicks = [],     // Création du tableau vide
+    nick;
+
+  while (nick = prompt('Entrez un prénom :')) { // Si la valeur assignée à la variable "nick" est valide (différente de "null") alors la boucle s'exécute
+    nicks.push(nick);         // Ajoute le nouveau prénom au tableau
+  }
+
+  if (nicks.length &gt; 0) { // On regarde le nombre d'items
+    alert(nicks.join(' ')); // Affiche les prénoms à la suite
+  } else {
+    alert('Il n\'y a aucuns prénoms en mémoire !');
+  }
+</pre>
+    
+    <!-- HTML END // STARTING JAVASCRIPT -->
+    
+    <script>
+        var nicks = [], // Création du tableau vide
+            nick;
+
+        while (nick = prompt('Entrez un prénom :')) { // Si la valeur assignée à la variable "nick" est valide (différente de "null") alors la boucle s'exécute
+            nicks.push(nick); // Ajoute le nouveau prénom au tableau
+        }
+
+        if (nicks.length > 0) { // On regarde le nombre d'items
+            alert(nicks.join(' ')); // Affiche les prénoms à la suite
+        } else {
+            alert('Il n\'y a aucuns prénoms en mémoire !');
+        }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,5 @@
+1 O = 8 bits
+1 Ko = 1024 O
+1 Mo = 1024 Ko = 1 048 576 Octets
+1 Go = 1024 Mo = 1 073 741 824 Octets
+1 To = 1024 Go = 1 099 511 627 776 Octets.

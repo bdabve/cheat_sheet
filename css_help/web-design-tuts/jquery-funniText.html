@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Funny Text</title>
+  <link rel="stylesheet" href="../../tools/funnyText/jquery.funnyText.css">
+  <link rel="stylesheet" href="./css/jquery-funnyText.css">
+</head>
+<body>
+  
+  <div class="myTest">Welcome To CheatSheet School</div>
+  
+  
+  <script src="../../tools/jquery-3.3.1.min.js"></script>
+  <script src="../../tools/funnyText/jquery.funnyText.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script> 
+   <script>
+    /* global $ */
+    
+    $(document).ready(function () {
+      
+      $('.myTest').funnyText({
+        speed: 500,
+		borderColor: 'blue',
+		activeColor: 'white',
+		color: 'green',
+		fontSize: '50px',
+		direction: 'both'
+      });
+    });
+  </script>
+</body>
+</html>

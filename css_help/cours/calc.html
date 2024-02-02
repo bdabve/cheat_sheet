@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Calc() Function</title>
+    <style>
+        .parent {
+            background-color: green;
+            padding: 20px 0;
+            overflow: hidden;
+        }
+
+        .one {
+            float: left;
+            width: 100px;
+            background-color: #F00;
+            color: #fff;
+        }
+
+        .two {
+            float: left;
+            width: calc(100% - 100px);
+            background-color: #00F;
+            color: #fff;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="parent">
+        <div class="one">One</div>
+        <div class="two">Two</div>
+    </div>
+</body>
+
+</html>

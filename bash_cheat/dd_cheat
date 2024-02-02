@@ -1,0 +1,52 @@
+[+] dd: copies blocks of data from one place to another.
+
+Synops: $Green $ dd if=input_file of=output_file [bs=block_size [count=blocks]] $colorOff
+
+$Green$ dd if=/dev/sdb of=/dev/sdc$colorOff         # Two USB: copy the first drive to the second
+$Green$ dd if=/dev/sdb of=flash_drive.img$colorOff  # Copy USB's contents to an ordinary file for later restoration
+$Green$ dd if=/dev/cdrom of=ubuntu.iso$colorOff     # Example of Creating an image of a CD-ROM
+
+[+] Create an iso image file containing the contents of a directory we use: $ genisoimage
+    $ genisoimage -o cd-rom.iso -R -J ~/cd-rom-file
+
+[+] Blanking A Re-Writable CD-ROM. 
+    Rewritable CD-RW media needs to be erased or blanked before it can be reused.
+    The $ wodim : program do this
+$ wodim dev=/dev/cd-rw blank=fast                 # We specify the cd-rw name and the type (the most minimal and faster is 'fast')
+$ wodim dev=/dev/cd-rw image.iso                  # We write the image.
+$ wodim -v dev=/dev/sr0 -dao /home/user/file.isoe # We write the image.
+
+# wodim supports a very large set of options.
+# Two common ones are '-v' for verbose output, and '-dao', which writes the disc in disc-at-once mode.
+# This mode should be used if you are preparing a disc for commercial reproduction.
+# The default mode for wodim is track-at-once, which is useful for recording music tracks."
+
+[+] Working with DVD:
+
+$ dvd+rw-mediainfo /dev/dvd                                   # To display information about dvd drive and disk
+$ growisofs -dvd-compat -Z /dev/sr0=/home/user/file.isoe      # Burning iso image to dvd+rw dvd-rw
+$ growisofs -dvd-compat -Z /dev/cd0 -J -R /path/to/data       # Burning data to dvd+rw dvd-rw
+# -dvd-compat indicates that the disk will be closed and that the recording will be unappendable.
+
+$ growisofs -Z /dev/cd0 -dvd-video /path/to/video     # Burning a dvd video.
+$ dvd+rw-format /dev/cd0                              # virgin DVD+RW needs to be formatted before first use.
+$ growisofs -M /dev/cd0 -J -R /path/to/nextdata       # Append some data to dvd-rw"
+
+# Watch the progress of 'dd'
+$ dd if=/dev/zero of=/dev/null bs=4KB &;
+export dd_pid=$(pgrep '^dd');
+while [[ -d /proc/$dd_pid ]]; do
+kill -USR1 $dd_pid && sleep 1 && clear
+done
+
+# Watch the progress of 'dd' with the built-in 'progress' functionality (introduced in coreutils v8.24)
+$ dd if=/dev/zero of=/dev/null bs=128M status=progress
+
+# Watch the progress of 'dd' with 'pv' and 'dialog' (apt-get install pv dialog)
+$ (pv -n /dev/zero | dd of=/dev/null bs=128M conv=notrunc,noerror) 2>&1 | dialog --gauge 'Running dd command (cloning), please wait...' 10 70 0
+
+# Watch the progress of 'dd' with 'pv' and 'zenity' (apt-get install pv zenity)
+$ pv -n /dev/zero | dd of=/dev/null bs=128M conv=notrunc,noerror) 2>&1 | zenity --title 'Running dd command (cloning), please wait...' --progress
+
+# DD with 'graphical' return
+$ dcfldd if=/dev/zero of=/dev/null bs=500K

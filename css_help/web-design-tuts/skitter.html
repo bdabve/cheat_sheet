@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>jQuery Skitter</title>
+  <link rel="stylesheet" href="../../tools/skitter/dist/skitter.css">
+</head>
+<body>
+ 
+  <div class="skitter skitter-large">
+    <ul>
+     
+      <li>
+        <a href="#cut"><img src="images/images.jpg" class="cut" /></a>
+        <div class="label_text"><p>cut</p></div>
+      </li>
+      <li>
+        <a href="#swapBlocks"><img src="images/Carcassonne-800-x-400_3.jpg" class="swapBlocks" /></a>
+        <div class="label_text"><p>Image 1</p></div>
+      </li>
+      <li>
+        <a href="#swapBarsBack"><img src="images/landscape-7-800x400.jpg" class="swapBarsBack" /></a>
+        <div class="label_text"><p>Image 2</p></div>
+      </li>
+      <li>
+        <a href="#swapBarsBack"><img src="images/suzuki-concept-kizashi-3-2008-01-800.jpg" class="swapBarsBack" /></a>
+        <div class="label_text"><p>Image 3</p></div>
+      </li>
+      
+    </ul>
+  </div>
+
+  <script src="../../tools/jquery-3.3.1.min.js"></script>
+  <script src="../../tools/jquery.easing/jquery.easing.min.js"></script>
+  <script src="../../tools/skitter/dist/jquery.skitter.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $(".skitter-large").skitter();
+    });
+  </script>
+</body>
+</html>

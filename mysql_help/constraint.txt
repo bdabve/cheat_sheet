@@ -1,0 +1,102 @@
+| SQL Constraints
+|-----------------
+|
+| # The following constraints are commonly used in SQL:
+|
+| NOT NULL : 
+|-----------
+| # Ensures that a column cannot have a NULL value
+|   mysql> CREATE TABLE Persons (
+|       ->   ID int NOT NULL,
+|       ->   LastName varchar(255) NOT NULL,
+|       ->   FirstName varchar(255) NOT NULL,
+|       ->   Age int
+|       -> );
+
+|   psql> ALTER TABLE table_name ALTER COLUMN column_name SET NOT NULL;
+
+|   -- Droping not null
+|   psql> ALTER TABLE table_name ALTER COLUMN column_name DROP NOT NULL;
+|-------------------------------------------
+| CHECK : 
+|--------
+| # Ensures that all values in a column satisfies a specific condition.
+|
+|   mysql> CREATE TABLE Persons (
+|       ->     ID int NOT NULL,
+|       ->     LastName varchar(255) NOT NULL,
+|       ->     FirstName varchar(255),
+|       ->     Age int,
+|       ->     CHECK (Age >= 18)                                        -- OR: Age int CHECK (Age>=18)
+|       --    CONSTRAINT chk_person CHECK (Age>=18 AND City='Sandnes')  -- give it a name.
+|       -> );
+
+| # After creating table.
+|   mysql> ALTER TABLE Persons ADD CHECK(Age>=18);
+|   mysql> ALTER TABLE Persons ADD CONSTRAINT chk_person Age CHECK (Age>=18 AND City='Sandnes');
+|
+|   psql> CREATE TABLE check_constraint_example (
+|      -> user_id bigserial,
+|      -> user_role varchar(50),
+|      -> salary integer,
+|      -> CONSTRAINT user_id_key PRIMARY KEY (user_id),
+|      -> CONSTRAINT check_role_in_list CHECK (user_role IN('Admin', 'Staff')),
+|      -> CONSTRAINT check_salary_not_zero CHECK (salary > 0)
+|----------------------------------------------------------------------------------
+| DEFAULT : 
+|----------
+| # Sets a default value for a column when no value is specified
+|   mysql> CREATE TABLE Persons (
+|       ->     ID int NOT NULL,
+|       ->     LastName varchar(255) NOT NULL,
+|       ->     City varchar(255) DEFAULT 'Sandnes'
+|       ->     );
+|   
+| # used to insert system values
+|   mysql> CREATE TABLE Orders (
+|       ->    ID int NOT NULL,
+|       ->    OrderNumber int NOT NULL,
+|       ->    OrderDate date DEFAULT GETDATE()
+|       -> );
+|   
+| # after creating the table.
+|   mysql> ALTER TABLE Persons ALTER City SET DEFAULT 'Sandnes';
+|   
+| # Drop a DEFAULT constraint
+|   mysql> ALTER TABLE Persons ALTER City DROP DEFAULT;
+|   
+| * [**_INDEX_**](./index.md)       : Used to create and retrieve data from the database very quickly.
+| * [**_PRIMARY KEY_**](./index.md) : A combination of a NOT NULL and UNIQUE. Uniquely identifies each row in a table. 
+| * [**_FOREIGN KEY_**](./index.md) : Uniquely identifies a row/record in another table.
+| * [**_UNIQUE_**](./index.md)   : Ensures that all values in a column are different
+|---------------------------------------------------------------------------------------------------------------------
+| Violation des contrainte
+|-------------------------
+|
+| IGNORE: 
+|--------
+| # Qui permet d'ignorer l'insertion ou la modification si elle viole une contrainte d'unicité.
+|   mysql> INSERT IGNORE INTO Espece(nom_courant, nom_latin, description)
+|       -> VALUES('Chien en peluche', 'Canis canis', 'Tout doux, propre et silencieux');
+|
+|   mysql> UPDATE IGNORE Espece SET nom_latin = 'Canis canis' WHERE nom_courant = 'Chat';
+|
+|   mysql> LOAD DATA INFILE 'file_name' IGNORE INTO TABLE table_name;
+|
+| REPLACE: 
+|---------
+| # Va remplacer l'ancienne ligne par la nouvelle
+|
+|   mysql> REPLACE INTO Animal (sexe, nom, date_naissance, espece_id)
+|   mysql> VALUES ('F', 'Spoutnik', '2010-08-06 15:05:00', 3);
+|
+|   mysql> LOAD DATA INFILE 'file_name' REPLACE INTO TABLE 'table_name';
+|
+| ON DUPLICATE KEY UPDATE: 
+|-------------------------
+| # Modifier la ligne déja existante.
+|
+|   mysql> INSERT INTO Animal(sexe, date_naissance, espece_id, nom, mere_id)
+|       -> VALUES('M', '2010-05-27 11:38:00', 3, 'Spoutnik', 52) 
+|       -> ON DUPLICATE KEY UPDATE mere_id = 52;
+|_____________________________________________________________________________________

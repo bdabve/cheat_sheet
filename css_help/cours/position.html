@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Positioning</title>
+    <style>
+        body {
+            height: 3000px;
+            background: #ddd;
+        }
+
+        .fix {
+            Background: #080;
+            color: #fff;
+            padding: 10px;
+            position: fixed;
+            top: 100px;
+            right: 200px;
+        }
+        
+        .relative {
+            background: red;
+            color: #fff;
+            padding: 10px;
+            position: relative;
+            top: 0px;
+            margin-bottom: 15px;
+        }
+        
+        .parent{
+            width: 940px;
+            background: #fff;
+            padding: 10px;
+            height: 600px;
+            position: relative;
+        }
+        
+        .abs {
+            background: #f00;
+            color: #fff;
+            padding: 10px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="fix">This is a fixed div</div>
+    <div class="relative">This is a relative div</div>
+    <div class="parent">
+        Hello this is parrent
+        <div class="abs">Absolute div inside relative parent</div>
+    </div>
+</body>
+
+</html>

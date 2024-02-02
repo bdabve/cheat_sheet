@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/div_to_table.css">
+    <title>Div To Table (display: table;)</title>
+</head>
+<body>
+   <table>
+       <tr>
+           <td>Host 1</td>
+           <td>Host 2</td>
+           <td>Host 3</td>
+           <td>Host 4</td>
+       </tr>
+       <tr>
+           <td>30 GB</td>
+           <td>60 GB</td>
+           <td>80 GB</td>
+           <td>90 GB</td>
+       </tr>
+       <tr>
+           <td>$ 50</td>
+           <td>$ 70</td>
+           <td>$ 80</td>
+           <td>$ 90</td>
+       </tr>
+       
+       <div class="table">
+           <div class="table-row">
+               <div class="table-data">Host 1</div>
+               <div class="table-data">Host 2</div>
+               <div class="table-data">Host 3</div>
+               <div class="table-data">Host 4</div>
+           </div>
+           <div class="table-row">
+               <div class="table-data">30 GB</div>
+               <div class="table-data">60 GB<br> Test Line <br>Line 2</div>
+               <div class="table-data">80 GB</div>
+               <div class="table-data">90 GB</div>
+           </div>
+           <div class="table-row">
+               <div class="table-data">$ 50</div>
+               <div class="table-data">$ 60</div>
+               <div class="table-data">$ 70</div>
+               <div class="table-data">$ 80</div>
+           </div>
+       </div>
+   </table>
+    
+</body>
+</html>

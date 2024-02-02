@@ -1,0 +1,62 @@
+body {
+    background-color: #333;
+}
+
+.image {
+    width: 480px;
+    height: 351px;
+    margin: 20px auto;
+    color: #fff;
+    position: relative;
+}
+
+img {
+    transition-delay: .3s;
+    transition-duration: .6s;
+}
+
+.image:hover img {
+    opacity: .1;
+}
+
+.image h3, 
+.image span {
+    position: absolute;
+    opacity: 0;
+}
+
+.image h3 {
+    top: 10px;
+    left: 10px;
+    margin: 0;
+}
+
+.image .date {
+    left: 10px;
+    bottom: 10px;
+}
+
+.image .views {
+    right: 10px;
+    bottom: 10px;
+}
+
+.image:hover h3, 
+.image:hover span {
+    opacity: 1;
+}
+
+.image:hover h3 {
+    transition-delay: .45s;
+    transition-duration: .6s;
+}
+
+.image:hover .date {
+    transition-delay: .65s;
+    transition-duration: .6s;
+} 
+
+.image:hover .views {
+    transition-delay: .85s;
+    transition-duration: .6s;
+} 

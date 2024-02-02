@@ -1,0 +1,13 @@
+[+] md5 Checksum:
+
+# The Most common method of checksum generation uses the $Green md5sum $colorOff program.
+    $ md5sum ~/image.iso
+
+# After you download an image, you should run md5sum against it and compare the results with the md5sum supplied by the publisher.
+# A CD-R written in disc-at-once mode can be checked this way:
+    $ md5sum /dev/cdrom
+
+# Many types of media, such as DVDs, require a precise calculation of the number of blocks.
+# In the example below, we check the integrity of the image file dvd-image.iso and the disc in the DVD reader /dev/dvd.
+
+    $ md5sum dvd-image.iso; dd if=/dev/dvd bs=2048 count=\$(( \$(stat -c \"%s\" dvd-image.iso) /2048 )) | md5sum $colorOff"

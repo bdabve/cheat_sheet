@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Place Holder Go Up Effect</title>
+    <link rel="stylesheet" href="css/placeholder-goUp-effect.css">
+</head>
+
+<body>
+    <div class="custom-input">
+        <input type="text">
+        <label for="">Your Name</label>
+    </div>
+    
+    <script src="../../tools/jquery-3.3.1.min.js"></script>
+    <script>
+        $(function (){
+            'use strict';
+            
+            $('.custom-input input[type="text"]').on('focusout', function (){
+                if ($(this).val() != '') {
+                    $(this).parent().addClass('has-data');
+                } else {
+                    $(this).parent().removeClass('has-data');
+                }
+            });
+        });
+        
+    </script>
+</body>
+
+</html>

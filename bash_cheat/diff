@@ -1,0 +1,13 @@
+diff -u version1 version2   # differences between two files:
+diff -ur folder1/ folder2/ # differences between two directories:
+
+diff -ub version1 version2  # ignore the white spaces:
+diff -uB version1 version2  # ignore the blank lines:
+diff -ui version1 version2  # ignore the differences between uppercase and lowercase:
+
+diff -q version1 version2   # report whether the files differ:
+diff -s version1 version2   # to report whether the files are identical:
+
+diff <(command1) <(command2) # diff the output of two commands or scripts:
+
+diff -Naur version1 version2 > version.patch    # Generate a patch file from two files

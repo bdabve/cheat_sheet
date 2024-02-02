@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Journal Entry</title>
+</head>
+<body>
+  
+  <script>
+    let journal = [
+  	{
+      events: ["work", "touched tree", "pizza","running", "television"],
+	  squirrel: false
+    },
+	{
+      events: ["work", "ice cream", "cauliflower","lasagna", "touched tree", "brushed teeth"],
+	  squirrel: false
+    },
+	{
+      events: ["weekend", "cycling", "break", "peanuts","beer"],
+	  squirrel: true
+    },
+    ];
+
+    for (let entry of journal){
+      console.log(`${entry.events.length} events.`);
+    }
+    
+    for (let entry of journal){
+      console.log(entry);
+    }
+  </script>
+</body>
+</html>

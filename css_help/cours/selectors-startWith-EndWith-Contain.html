@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Selectors => [ ~ | ^ | $ | * ]</title>
+    <style>
+        * {
+            font-family: arial;
+        }
+        div {
+            border: 1px solid #ccc;
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        p ~ span {
+            color: #f00;
+        }
+
+        [class^="out"]{
+            background-color: green;
+        }
+
+        [class$="side"]{
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <p class="outside">Paragraphe outside div</p>
+    <div>
+        <p class="inside">Paragraphe inside</p>
+        <span class="inside">Span inside div</span>
+    </div>
+    <span class="outside">Span outside div</span>
+
+</body>
+</html>

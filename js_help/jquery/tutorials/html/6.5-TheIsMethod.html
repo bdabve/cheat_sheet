@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Selection Traversal</title>
+    <script src='../../../../tools/jquery-3.3.1.min.js'></script>
+  </head>
+  <body>
+   
+    <div><button>Button in a div</button></div>
+    
+    <div><button>Button in a div</button></div>
+    
+    <span><button>Button in a span</button></span>
+    
+    <div><button>Button in a div</button></div>
+    
+    <span><button>Button in a span</button></span>
+    
+    <p id='info'></p>
+    
+    <script>
+      $('button').click(function()
+      {
+        var elem = ''
+        if ($(this).parent().is('div')) elem = 'div'
+        else                            elem = 'span'
+        $('#info').html('You clicked a ' + elem)
+      })
+    </script>
+    
+  </body>
+</html>

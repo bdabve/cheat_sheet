@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Form</title>
+        <link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet">
+        <link rel="stylesheet" href="./css/Login_Google_like.css">
+    </head>
+    <body>
+       <div class="card">
+           <div class="front">
+                <form>
+                    <h2>Login</h2>
+                    <input type="text" id="username" name="username" required autocomplete="off">
+                    <label for="username">Your Name</label>
+                    <input type="password" id="pwd" name="pwd" required>
+                    <label for="pwd">Password</label>
+                    <a href="#" class="register">You don't have an account?</a>
+                    <input type="submit" value="Login">
+               </form>
+           </div>
+           
+           <div class="back">
+               <form>
+                    <h2>Register</h2>
+                    <input type="text" id="username" name="username" required autocomplete="off">
+                    <label for="username">Your Name</label>
+                    
+                    <input type="email" id="email" name="email" required autocomplete="off">
+                    <label for="username">Your Email</label>
+                    
+                    <input type="password" id="pwd" name="pwd" required>
+                    <label for="pwd">Password</label>
+                    
+                    <input type="password" id="re-pwd" name="pwd" required>
+                    <label for="re-pwd">Re-Enter Password</label>
+                    
+                    <a href="#" class="login">Login?</a>
+                    <input type="submit" value="Submit">
+               </form>
+           </div>
+       </div>
+       
+       <script src="../../tools/jquery-3.3.1.min.js"></script>
+       <script>
+            $(document).ready(function (){
+               $('.register').click(function(){
+                   $('.card').css('transform', 'rotateY(180deg)');
+               });
+                $('.login').click(function(){
+                   location.reload();
+               });
+            });       
+        </script>
+    </body>
+</html>

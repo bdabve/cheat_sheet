@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Flex Box</title>
+    <style>
+        
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        .flex-container {
+            width: 800px;
+            height: 500px;
+            background: dodgerblue;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 50px auto;
+        }
+
+        .flex-container>div {
+            background: #f1f1f1;
+            font-size: 30px;
+            margin: 10px;
+            padding: 20px;
+        }
+
+        code {
+            font-size: 18px;
+        }
+
+        
+    </style>
+</head>
+
+<body>
+    <div class="flex-container one">
+        <div>
+            <code>
+               display: flex;<br>
+               align-items: center;<br>
+               justify-content: center;
+           </code>
+        </div>
+    </div>
+</body>
+
+</html>

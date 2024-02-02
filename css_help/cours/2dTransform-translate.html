@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2D Transform - Translate</title>
+    <style>
+
+        div {
+            background-color: #eee;
+            padding: 10px;
+            border: 1px solid #ccc;
+            font-family: Arial, Tahoma;
+            width: 400px;
+            margin: 40px auto;
+            text-align: center;
+            transition: all .5s ease-in-out;
+        }
+
+        
+        .one:hover{
+            transform: translate(40px, 40px);
+        }
+
+        .two:hover{
+            transform: translate(-40px, -40px);
+        }
+
+        .three:hover{
+            transform: translateX(40px);
+        }
+
+        .four:hover{
+            transform: translateY(-40px);
+        }
+
+        .five:hover{
+            transform: translateX(150px) scaleY(1.5) rotate(20deg);
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="one">
+        <h3>2D Transfrom translate(40px, 40px)</h3>
+    </div>
+    <div class="two">
+        <h3>2D Transfrom translate(-40px, -40px)</h3>
+    </div>
+    <div class="three">
+        <h3>2D Transfrom translateX(40px)</h3>
+    </div>
+    <div class="four">
+        <h3>2D Transfrom translateY(-40px)</h3>
+    </div>
+    <div class="five">
+        <h3>2D Transfrom translateX(150px) scaleY(1.5) rotate(20deg)</h3>
+    </div>
+</body>
+</html>

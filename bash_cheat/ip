@@ -1,0 +1,12 @@
+ip addr                                 # Display all interfaces with addresses
+ip link set dev wlan0 {up|down}         # Take down / up the wireless adapter
+ip addr add 192.168.1.100/32 dev eth0   # Set a static IP and netmask
+ip addr del 192.168.1.100/32 dev eth0   # Remove a IP from an interface
+ip address flush dev eth0               # Remove all IPs from an interface
+
+ip route                                            # Display all routes
+ip -6 route                                         # Display all routes for IPv6
+ip route add default via 192.168.1.1                # Add default route via gateway IP
+ip route add 192.168.0.0/24 dev eth0                # Add route via interface
+ip link set dev eth0 address aa:bb:cc:dd:ee:ff      # Change your mac address 
+ip neighbor show                                    # View neighbors (using ARP and NDP) 

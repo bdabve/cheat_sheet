@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Animation</title>
+    <style>
+        div {
+            width: 100px;
+            height:100px;
+            border: 1px solid #ccc;
+            background: #f00;
+            position: absolute;
+            left: 0;
+            top: 0;
+            animation: moving 3s 2 linear;
+        }
+        
+        @keyframes moving {
+            0% { 
+                top: 0; 
+                left: 0; 
+            }
+            25% { 
+                top: 0; 
+                left: 200px; 
+            }
+            50% { 
+                top: 200px; 
+                left: 200px; 
+            }
+            75% { 
+                top: 200px; 
+                left: 0
+            }
+            100% { 
+                top: 0; 
+                left: 0;
+            }
+        }
+  
+    </style>
+</head>
+
+<body>
+    <div>
+        
+    </div>
+</body>
+
+</html>

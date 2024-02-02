@@ -1,0 +1,133 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Animation - Create Swing Dropdown</title>
+    <style>
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        .container {
+            width: 250px;
+            height: 50px;
+            margin: 10px;
+            float: left;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .container .box {
+            height: 50px;
+            line-height: 50px;
+            position: relative;
+            color: #fff;
+            z-index: 2;
+        }
+
+        .container a {
+            display: inline-block;
+            width: 100%;
+            height: 50px;
+            line-height: 50px;
+            background-color: #333;
+            color: #fff;
+            text-decoration: none;
+            position: relative;
+            top: -50px;
+            z-index: 1;
+        }
+
+        .container:hover a {
+            top: 0;
+        }
+
+        .normal::before {
+            content: "Normal Hover";
+            display: block;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .normal .box {
+            background-color: #62c8f8;
+        }
+
+        .transition::before {
+            content: "Transition Hover";
+            display: block;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .transition .box {
+            background-color: #3b5998;
+        }
+
+        .transition a {
+            transition: all .5s ease-in-out;
+        }
+
+        .animation::before {
+            content: "Animation Hover";
+            display: block;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .animation .box {
+            background-color: #c8302a;
+        }
+
+        .animation a {
+            transition: all .5s ease-in-out;
+        }
+        
+        .animation:hover a {
+            transform-origin: top;
+            animation: swingingHover 1.5s ease-in-out;
+        }
+
+        @keyframes swingingHover {
+            0% {
+                transform: rotateX(-50deg);
+            }
+            20% {
+                transform: rotateX(50deg);
+            }
+            40% {
+                transform: rotateX(-30deg);
+            }
+            60% {
+                transform: rotateX(30deg);
+            }
+            80% {
+                transform: rotateX(-30deg);
+            }
+            100% {
+                transform: rotateX(0deg);
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container normal">
+        <div class="box">Follow Me On Twitter</div>
+        <a href="#">@Dabve</a>
+    </div>
+    <div class="container transition">
+        <div class="box">Follow Me On Facbook</div>
+        <a href="#">@Dabve</a>
+    </div>
+    <div class="container animation">
+        <div class="box">Follow Me On Youtube</div>
+        <a href="#">@Dabve</a>
+    </div>
+</body>
+
+</html>

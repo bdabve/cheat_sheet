@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Editer Un Tableaux</title>
+    <style>
+        td, th {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <table>
+            <thead>
+                <tr>
+                    <th scope="col">Fiche</th>
+                    <th scope="col">Catégorie</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Natural Selection 2</td>
+                    <td>Jeux vidéo</td>
+                </tr>
+                <tr>
+                    <td>Team Fortress²</td>
+                    <td>Jeux vidéo</td>
+                </tr>
+                <tr>
+                    <td>Dreamweaver</td>
+                    <td>Logiciels</td>
+                </tr>
+                <tr>
+                    <td>Comment faire des frites</td>
+                    <td>Cuisine</td>
+                </tr>
+                <tr>
+                    <td>Comment faire un créneau</td>
+                    <td>Conduite</td>
+                </tr>    
+            </tbody>
+        </table>
+
+    <script>
+        
+        /*
+        
+        * Quand on clique sur la cellule, une fonction récupère le contenu et crée un <input /> au sein de la cellule. 
+        * Quand cet <input /> perd le focus, on fait l'inverse : une fonction récupère la valeur de l'<input /> et le place dans   la cellule, en supprimant l'<input /> au passage (facile avec innerHTML).
+
+        * Il faut toutefois garder à l'esprit que quand on a cliqué et que l'<input />, l'évènement onclick est toujours actif     et que si vous recliquez, la fonction sera réexécutée. 
+        * C'est pour cela que j'utilise un attribut data-state pour savoir si oui ou non la fonction a déjà été appelée.
+        
+        */
+        var cells = document.getElementsByTagName('td');
+
+        if (cells) {
+            
+
+            for (var i = 0, c = cells.length; i < c; i++) {
+                cells[i].onclick = function() {
+                    if (this.getAttribute("data-state")) return; // Si data-state est présent, on ne fait rien
+                    // Car ça veut dire qu'on est déjà en train d'éditer la cellule
+
+                    var text  = this.innerHTML; // On récupère le contenu de la cellule
+                    var input = document.createElement("input"); // On crée un input
+                        input.value = text;
+                        input.type = "text";
+
+                    this.innerHTML = '';     // On efface le contenu de la cellule
+                    this.appendChild(input); // On place l'input dans la cellule, 
+                    this.setAttribute("data-state", "edit"); // On indique que la cellule est en cours d'édition
+
+                    input.focus(); // On place le curseur dans l'input (c'est important)
+                    input.onblur = function() { // Quand l'input perd le focus...
+                        this.parentNode.removeAttribute("data-state"); // On supprime l'attribut
+                        this.parentNode.innerHTML = this.value;	// Et on remplace la contenu de la cellule (et donc l'input) par la valeur de l'input
+                    };
+                };
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="./css/bootstrap-icons.css">
+  <title>Social Media Buttons</title>
+  <style>
+.btn_group {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  text-align: center;
+}
+
+.btn {
+  display: inline-block;
+  width: 90px;
+  height: 90px;
+  background: #f1f1f1;
+  margin: 10px;
+  border-radius: 30%;
+  box-shadow: 0 5px 15px -5px #00000070;
+  color: #3b5998;
+  overflow: hidden;
+  position: relative;
+}
+
+.tw_btn {
+  color: #3cf;
+}
+
+.google_btn {
+  color: #dc4a38;
+}
+
+.github_btn {
+  color: #636e72;
+}
+
+.insta_btn {
+  color: #e17055;
+}
+
+.btn i:before {
+  line-height: 90px;
+  font-size: 33px;
+  transition: 0.3s linear;
+}
+
+
+.btn:before {
+  content: '';
+  position: absolute;
+  left: -110%;
+  top: 90%;
+  width: 120%;
+  height: 120%;
+  background: #3b5998;
+  transform: rotate(45deg);
+}
+
+.tw_btn:before {
+  background: #3cf;
+}
+
+.google_btn:before {
+  background: #dc4a38;
+}
+
+.github_btn:before {
+  background: #636e72;
+}
+
+.insta_btn:before {
+  background: #e17055;
+}
+
+.btn:hover i:before{
+  -webkit-transform: scale(1.3);
+  -moz-transform: scale(1.3);
+  -o-transform: scale(1.3);
+  transform: scale(1.3);
+  color: #f1f1f1;
+}
+
+
+
+.btn:hover::before {
+  animation: aaa 0.7s 1;
+  top: -10%;
+  left: -10%;
+}
+
+@keyframes aaa{
+  0%{
+    left: -110%;
+    top: 90%;
+  }50%{
+    left: 10%;
+    top: -30%;
+  }100%{
+    top: -10%;
+    left: -10%;
+  }
+}
+
+  </style>
+</head>
+
+<body>
+  <div class="btn_group">
+    <a href="#" class="btn fb_btn"><i class="bi bi-facebook"></i></a>
+    <a href="#" class="btn tw_btn"><i class="bi bi-twitter"></i></a>
+    <a href="#" class="btn google_btn"><i class="bi bi-google"></i></a>
+    <a href="#" class="btn github_btn"><i class="bi bi-github"></i></a>
+    <a href="#" class="btn insta_btn"><i class="bi bi-instagram"></i></a>
+  </div>
+</body>
+</html>

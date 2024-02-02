@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Linear Gradient</title>
+    <style>
+        .container {
+            width: 850px;
+            height: 800px;
+            display: flex;
+            flex-flow: row wrap;
+        }
+
+        .container div{
+            width: 250px;
+            height: 200px;
+            border: 1px solid black;
+            text-align: center;
+            color: white;
+            font-size: 22px;
+        }
+        .first{
+            background: linear-gradient(blue, green);
+        }
+
+        .second{
+            background: linear-gradient(to right, blue, green);
+        }
+
+        .third{
+            background: linear-gradient(to right, blue, green, #0ff, rgb(200, 30, 170));
+        }
+
+        .transparent {
+            background: linear-gradient(to top, rgba(0,0,0,0), rgba(0,0,0,1));
+        }
+
+        .espaceDefferent {
+            background-image: linear-gradient(to right,blue, green 70px);
+        }
+
+        .radial-circle {
+            background-image: radial-gradient(circle at center, white, green);
+        }
+
+        .radial-ellipse {
+            background-image: radial-gradient(ellipse at center, white, green);
+        }
+
+        .radial-circle-topleft {
+            background-image: radial-gradient(circle at top left, white, green);
+        }
+
+        .repeatRadialGradient
+        {
+            background: repeating-radial-gradient(farthest-side ellipse at center, green, red, green 80px);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="first">default</div>
+        <div class="second">Linear to right</div>
+        <div class="third">Linear multiple color</div>
+        <div class="transparent">transparent</div>
+        <div class="espaceDefferent">Un degrade dont les couleur occupent un espace different</div>
+        <div class="radial-circle">Circle gradient at center</div>
+        <div class="radial-ellipse">Ellipse gradient at center</div>
+        <div class="radial-circle-topleft">Circle gradient at top left</div>
+        <div class="repeatRadialGradient">Un degrade elliptique repetitf</div>
+    </div>
+</body>
+
+</html>

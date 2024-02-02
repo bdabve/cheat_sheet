@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>Cars Prototype</title>
+</head>
+
+
+<body>
+    <script src="../../../../tools/jquery-3.3.1.min.js"></script>
+    <script>
+        var Car = function(x, y, name) {
+            this.x = x;
+            this.y = y;
+            this.name = name;
+        };
+
+        Car.prototype.draw = function() {
+            // Create a string containing HTML that points to an image of a car
+            var carHtml = '<div>' + this.name +'</div>'; // 
+            
+            // Pass carHTML to the $ function, which converts it from a string to a jQuery element.
+            this.carElement = $(carHtml);
+            
+            // Use the css method on carElement to set the position of the car image. 
+            this.carElement.css({
+                position: "absolute",
+                left: this.x,
+                top: this.y,
+                border: '1px solid black',
+                width: '100px',
+                height: '40px',
+                backgroundColor: '#EEE'
+            });
+            
+            // Append our element to body
+            $("body").append(this.carElement);
+        };
+        
+        Car.prototype.moveRight = function (){
+            this.x += 5;
+            
+            this.carElement.css({
+              left: this.x,
+              top: this.y
+        });
+        };
+        
+        // Testing the drawing Car
+        var tesla = new Car(10, 20, 'Tesla');
+        var nissan = new Car(100, 200, 'Nissan');
+        
+        tesla.draw();
+        tesla.moveRight();
+        nissan.draw();
+        
+    </script>
+</body>
+</html>

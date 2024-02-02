@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Count Down with jQuery</title>
+</head>
+<body>
+    <div class="title">You will redirected to www.google.com in <span id="countDown">20</span> Seconds</div>
+  
+    <script src='..\js\jquery-3.3.1.min.js'></script>
+    <script>
+    
+        $(function () {
+           "use strict";
+            
+            setInterval(function (){
+                var count = parseInt($('#countDown').html());
+                if ( count > 0) {
+                    $('#countDown').html(count - 1);
+                } else if (count == 0){
+                    $('.title').html('Redirecting ...');
+                    window.location = 'https://www.google.com';
+                }
+            }, 1000);
+            
+            
+        });
+    </script>
+</body>
+</html>

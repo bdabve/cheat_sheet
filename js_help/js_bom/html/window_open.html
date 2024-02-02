@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Window => Open Method</title>
+</head>
+<body> 
+   <button id="open">Open Link</button> 
+ 
+    <script>
+        var openButton = document.getElementById('open');
+        openButton.onclick = function() {
+            window.open('https://www.google.com', '_blank', 'width=400, height=400, left=400, menubar=no', '');      
+        }
+    </script>
+</body>
+</html>

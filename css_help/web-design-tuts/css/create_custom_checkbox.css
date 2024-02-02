@@ -1,0 +1,43 @@
+.holder {
+    margin: 40px auto;
+    width: 600px;
+}
+
+.holder > div {
+    width: 300px;
+    padding: 20px;
+    background-color: #EEE;
+    margin-bottom: 5px;
+}
+
+.holder input[type="checkbox"]{
+    -webkit-appearance : none;
+    appearance : none;
+}
+
+.holder label {
+    position: relative;
+}
+
+.holder label::before {
+    content: "";
+    width: 20px;
+    height: 20px;
+    background-color: #DDD;
+    display: inline-block;
+    border: 1px solid #CCC;
+    position: relative;
+    top: 5px;
+    right: 10px;
+}
+
+.holder input[type="checkbox"]:checked + label::after {
+    content: "\f00c";
+    font-family: "Font Awesome\ 5 Free";
+    font-weight: 900;
+    color: green;
+    position: absolute;
+    font-size: 30px;
+    left: -10px;
+    top: -10px;
+}

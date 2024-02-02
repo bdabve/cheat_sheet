@@ -1,0 +1,40 @@
+$ sqlite3 example.db                # create database and launch interactive shell
+$ sqlite3 example.db ".tables"      # list tables
+sqlite> .table '%es'                # list tables that ends with the string 'es'
+sqlite> .schema table_name          # Show the structure of table_name
+sqlite> .fullschema                 # Show the structure of table_name
+sqlite> .indexes
+
+sqlite> .mode column
+sqlite> .header on
+
+# Dump
+$ sqlite3 database
+sqlite3> .output data.sql       # write into data.sql
+sqlite3> .dump                  # dump everything
+sqlite3> .dump albums           # dump a specific table
+sqlite3> .exit
+
+# Load
+$ sqlite3 database
+sqlite3> .read data.sql         # import sql file
+$ cat db.sql | sqlite3 db_name
+
+# Import CSV
+$ sqlite3 database
+sqlite3> .mode csv
+sqlite3> .import path/filename.csv table_name
+
+# Export CSV
+$ sqlite3 dbname
+sqlite3> .mode csv
+sqlite3> .output filename.csv
+sqlite3> SELECT * FROM table_name;
+sqlite3> .exit
+
+$ sqlite3 -header -csv path/db_name.sqlite "select * from table_name" > filename.csv
+
+# view records with fuzzy matching
+sqlite3 ~/example.db "SELECT * FROM 'Os' WHERE Year like '19%';"
+
+# More info 'https://www.sqlitetutorial.net/'

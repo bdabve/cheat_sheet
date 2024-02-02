@@ -1,0 +1,9 @@
+.markdown-body {
+    font-family: Monaco;
+    min-width: 80% !important;
+}
+
+.markdown-body pre {
+    font-family: Monaco;
+    font-size: 17px;
+}

@@ -1,0 +1,89 @@
+body {
+    background-color: #333;
+}
+
+.image-all-together {
+    width: 480px;
+    height: 351px;
+    margin: 20px auto;
+    color: #FFF;
+    position: relative;
+}
+
+.image-all-together h3 {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    font-family: 'Amiri', fantasy;
+    font-size: 27px;
+    opacity: 0;
+}
+
+.image-all-together span {
+    position: absolute;
+    background-color: dodgerblue;
+    transition: .3s;
+}
+
+.image-all-together .one {
+    left: 0;
+    top: 0;
+    width: 5px;
+    height: 0;
+}
+
+.image-all-together .two {
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 5px;
+}
+
+.image-all-together .three {
+    bottom: 0;
+    right: 0;
+    width: 5px;
+    height: 0;
+}
+
+.image-all-together .four {
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 5px;
+    
+}
+
+.image-all-together:hover .one{
+    height: 100%;
+}
+
+.image-all-together:hover .two{
+    width: 100%;
+    transition-delay: .3s;
+}
+
+.image-all-together:hover .three{
+    height: 100%;
+    transition-delay: .6s;
+}
+
+.image-all-together:hover .four{
+    width: 100%;
+    transition-delay: .9s;
+
+}
+
+.image-all-together:hover img {
+    transition-delay: 1.2s;
+    transition-duration: .3s;
+    opacity: .1;
+}
+
+.image-all-together:hover h3 {
+    transition-delay: 1.5s;
+    transition-duration: .5s;
+    opacity: 1;
+}

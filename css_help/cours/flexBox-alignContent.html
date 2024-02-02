@@ -1,0 +1,172 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Flex Box</title>
+    <style>
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        .flex-container {
+            width: 800px;
+            height: 600px;
+            background: dodgerblue;
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .flex-container>div {
+            background: #f1f1f1;
+            height: 120px;
+            font-size: 30px;
+            margin: 10px;
+            padding: 5px;
+        }
+
+        code {
+            font-size: 18px;
+        }
+
+        .one {
+            flex-wrap: wrap;
+            align-content: space-around;
+        }
+
+        .two {
+            flex-wrap: wrap;
+            align-content: space-between;
+        }
+
+        .three {
+            flex-flow: column wrap;
+            align-content: space-around;
+        }
+
+        .four {
+            flex-wrap: wrap;
+            align-content: flex-end;
+        }
+
+        .five {
+            flex-flow: column wrap;
+            align-content: flex-end;
+        }
+        
+        .six {
+            flex-flow: row wrap;
+            align-content: center;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="flex-container one">
+        <div>
+            <code>
+               display: flex;<br>
+               flex-wrap: wrap;<br>
+                align-content: space-around;
+           </code>
+        </div>
+        <div>Div 2</div>
+        <div>Div 3</div>
+        <div>Div 4</div>
+        <div>Div 5</div>
+        <div>Div 6</div>
+        <div>Div 7</div>
+        <div>Div 8</div>
+    </div>
+
+
+    <div class="flex-container two">
+        <div>
+            <code>
+               display: flex;<br>
+               flex-wrap: wrap;<br>
+                align-content: space-between;
+           </code>
+        </div>
+        <div>Div 2</div>
+        <div>Div 3</div>
+        <div>Div 4</div>
+        <div>Div 5</div>
+        <div>Div 6</div>
+        <div>Div 7</div>
+        <div>Div 8</div>
+    </div>
+
+
+    <div class="flex-container three">
+        <div>
+            <code>
+               display: flex;<br>
+               flex-flow: column wrap;<br>
+               align-content: space-around;
+            </code>
+        </div>
+        <div>Div 2</div>
+        <div>Div 3</div>
+        <div>Div 4</div>
+        <div>Div 5</div>
+        <div>Div 6</div>
+        <div>Div 7</div>
+        <div>Div 8</div>
+    </div>
+
+    <div class="flex-container four">
+        <div>
+            <code>
+               display: flex;<br>
+               flex-flow: row wrap;<br>
+               align-content: flex-end;
+             </code>
+        </div>
+        <div>Div 2</div>
+        <div>Div 3</div>
+        <div>Div 4</div>
+        <div>Div 5</div>
+        <div>Div 6</div>
+        <div>Div 7</div>
+        <div>Div 8</div>
+    </div>
+
+    <div class="flex-container five">
+        <div>
+            <code>
+               display: flex;<br>
+               flex-flow: column wrap;<br>
+               align-content: flex-end;
+             </code>
+        </div>
+        <div>Div 2</div>
+        <div>Div 3</div>
+        <div>Div 4</div>
+        <div>Div 5</div>
+        <div>Div 6</div>
+        
+    </div>
+    
+    <div class="flex-container six">
+        <div>
+            <code>
+               display: flex;<br>
+               align-content: center;<br>
+               flex-flow: row wrap;
+             </code>
+        </div>
+        <div>Div 2</div>
+        <div>Div 3</div>
+        <div>Div 4</div>
+        <div>Div 5</div>
+        <div>Div 6</div>
+        <div>Div 7</div>
+        <div>Div 8</div>
+    </div>
+
+</body>
+
+</html>

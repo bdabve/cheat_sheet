@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Pseudo Classes</title>
+    <style>
+        div {
+            background-color: #ccc;
+            border: 1px solid #eee;
+            width: 400px;
+            height: 200px;
+            margin: 50px auto;
+            padding: 10px;
+        }
+
+        div:nth-child(2)::before {
+            content: "Content before div number 2";
+            display: block;
+            color: red;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        div:nth-child(2)::After {
+            content: "Content after div number 2";
+            display: block;
+            color: green;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .two:first-letter {
+            font-size: 30px;
+            padding: 0 10px;
+            margin: 0 10px 10px 0;
+            background-color: red;
+            color: white;
+            display: block;
+            border-radius: 10px;
+        }
+
+        .two:first-line {
+            color: green;
+        }
+
+        p:first-child {
+            background-color: aqua;
+        }
+
+        q:lang(no){
+            quotes: "~" "~";
+        }
+
+        p:first-child i {
+            color: blue;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div>
+        <p>Hello</p>
+        <p class="two">
+            Text to work with Text to work with Text to work with Text to work with Text to work with Text to work with Text to work with Text to work with Text to
+        </p>
+    </div>
+
+    <div>
+        This is a simple text
+    </div>
+
+    <div>
+        <p>I am a <i>strong</i> person. I am a <i>strong</i> person.</p>
+        <p>Some text <q lang="no">A quote in a paragraph</q> Some text</p>
+        <p>I am a <i>strong</i> person. I am a <i>strong</i> person.</p>
+    </div>
+
+</body>
+
+</html>

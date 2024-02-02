@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Window => Scroll Method</title>
+  <style>
+      body {
+          height: 4000px;
+          width: 4000px;
+      }
+      button {
+          position: fixed;
+          top: 10px;
+          left: 10px;
+      }
+  </style>
+</head>
+
+<body> 
+    <button id="scroll">Scroll</button> 
+ 
+    <script>
+        var scrollButton = document.getElementById('scroll');
+        scrollButton.onclick = function() {
+            'use strict';
+            window.scrollBy(200, 150);
+            window.console.log('Window Scrolled left: ' + window.scrollX + ' px');
+            window.console.log('Window Scrolled top: ' + window.scrollY + ' px');
+        }
+    </script>
+</body>
+</html>

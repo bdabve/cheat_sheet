@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Flex Box</title>
+    <style>
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        .flex-container {
+            width: 800px;
+            background: dodgerblue;
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .flex-container>div {
+            background: #f1f1f1;
+            font-size: 30px;
+            margin: 10px;
+            padding: 20px;
+        }
+
+        code {
+            font-size: 18px;
+        }
+
+        .one {
+            flex-direction: row;
+            justify-content: center;
+        }
+
+        .two {
+            flex-direction: row;
+            justify-content: flex-end;
+        }
+
+        .three {
+            flex-direction: row;
+            justify-content: space-around;
+        }
+
+        .four {
+            justify-content: space-between;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="flex-container one">
+        <div>
+            <code>
+               display: flex;<br>
+               flex-direction: row;<br>
+               justify-conten: center;
+           </code>
+        </div>
+        <div>Div 2</div>
+        <div>Div 3</div>
+    </div>
+
+
+    <div class="flex-container two">
+        <div>
+            <code>
+               display: flex;<br>
+               flex-direction: row;<br>
+               justify-conten: flex-end;
+           </code>
+        </div>
+        <div>Div 2</div>
+        <div>Div 3</div>
+    </div>
+
+
+    <div class="flex-container three">
+        <div>
+            <code>
+               display: flex;<br>
+               flex-direction: row;<br>
+               justify-conten: space-around;
+           </code>
+        </div>
+        <div>Div 2</div>
+        <div>Div 3</div>
+    </div>
+
+    <div class="flex-container four">
+        <div>
+            <code>
+               display: flex;<br>
+               justify-content: space-between;
+             </code>
+        </div>
+        <div>Div 2</div>
+        <div>Div 3</div>
+    </div>
+
+</body>
+
+</html>

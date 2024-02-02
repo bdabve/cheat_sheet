@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Animation Play State, Timing Function</title>
+    <style>
+        .container {
+            width: 1000px;
+            height: 700px;
+            padding: 0;
+            background: #fff;
+            border: 1px solid #ccc;
+            margin: 50px 0;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        .container div {
+            width: 196px;
+            height: 40px;
+            margin: 0;
+            margin-left: 9px;
+            position: absolute;
+            top: 52px;
+            color: white;
+            font-size: 15px;
+            text-align: center;            
+        }
+
+        .first {
+            left: 0px;
+            background-color: red;
+            animation-name: moving;
+            animation-duration: 5s;
+            animation-iteration-count: 3;
+            animation-direction: alternate;
+            animation-delay: 4s;
+            animation-fill-mode: both;
+            animation-timing-function: ease;
+            animation-play-state: running;  /*Or Paused useful with js*/
+
+        }
+
+        .second {
+            left: 200px;
+            background-color: blue;
+            animation-name: moving;
+            animation-duration: 5s;
+            animation-iteration-count: 3;
+            animation-direction: alternate;
+            animation-delay: 4s;
+            animation-fill-mode: both;
+            animation-timing-function: ease-in;
+            animation-play-state: running;  /*Or Paused useful with js*/
+
+        }
+
+        .third {
+            left: 400px;
+            background-color: green;
+            animation-name: moving;
+            animation-duration: 5s;
+            animation-iteration-count: 3;
+            animation-direction: alternate;
+            animation-delay: 4s;
+            animation-fill-mode: both;
+            animation-timing-function: ease-out;
+            animation-play-state: running;  /*Or Paused useful with js*/
+
+        }
+
+        .fourth {
+            left: 600px;
+            background-color: skyblue;
+            animation-name: moving;
+            animation-duration: 5s;
+            animation-iteration-count: 3;
+            animation-direction: alternate;
+            animation-delay: 4s;
+            animation-fill-mode: both;
+            animation-timing-function: ease-in-out;
+            animation-play-state: running;  /*Or Paused useful with js*/
+
+        }
+
+        .fifth {
+            left: 800px;
+            margin-right: 0;
+            background-color: darkgoldenrod;
+            animation-name: moving;
+            animation-duration: 5s;
+            animation-iteration-count: 3;
+            animation-direction: alternate;
+            animation-delay: 4s;
+            animation-fill-mode: both;
+            animation-timing-function: linear;
+            animation-play-state: running;  /*Or Paused useful with js*/
+
+        }
+
+        @keyframes moving {
+            from {
+                height: 20px;
+            }
+            to {
+                height: 100%;
+                background: black;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="first">Ease</div>
+        <div class="second">Ease In</div>
+        <div class="third">Ease Out</div>
+        <div class="fourth">Ease In Out</div>
+        <div class="fifth">Linear</div>
+    </div>
+</body>
+
+</html>
